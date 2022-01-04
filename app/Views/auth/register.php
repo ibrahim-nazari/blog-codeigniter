@@ -3,6 +3,14 @@
 <?= $this->section('content') ?>
 <div class="container mt-5">
    <div class="col-md-4 offset-4 mt-5 p-5 border ">
+   <?php if(!empty(session()->getFlashdata("fail"))) :   ?>
+         <div class="alert alert-danger"><?= session()->getFlashdata("fail"); ?></div>
+      <?php endif ?>
+     <?php if(!empty(session()->getFlashdata("success"))) :   ?>
+        <div class="alert alert-success"><?= session()->getFlashdata("success"); ?></div>
+      <?php endif ?>
+      
+     
      
        <form action="<?=base_url("auth/save")  ?>" method="post" autoComplete="off">
        <?= csrf_field(); ?>

@@ -15,7 +15,7 @@
     <div class="d-flex justify-content-between flex-column" style="min-height:100vh">
         <header >
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
+  <div class="container-fluid px-5">
     <a class="navbar-brand" href="#">Programming</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -34,19 +34,31 @@
         
         
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <?php if(session()->has("loggedUserId")) :   ?>
+        <div class="d-flex align-items-center">
+          <div><?= session()->get("username"); ?>&nbsp; | </div>
+         <form action="<?=base_url("/auth/logout")?>" method="post">
+            <button class="btn btn-default">Logout</button>
+          </form>
+        </div>
+         
+
+         <?php  else:  ?>
+          
+          <a class="" href="<?=site_url("auth")?>">Login</a>
+          
+          
+          
+      <?php endif ?>
     </div>
   </div>
 </nav>
         </header>
-        <main class="flex-grow-1 container-fluid">
+        <main class="flex-grow-1 container-fluid px-5">
         <?= $this->renderSection('content') ?>
         </main>
 
-        <footer>footer</footer>
+        <footer class="px-5">footer</footer>
     </div>
     
 </body>

@@ -64,6 +64,18 @@ $routes->setTranslateURIDashes(false);
 $routes->set404Override();
 $routes->setAutoRoute(true);
 
+$routes->group("",["filter"=>"AuthCheck"],function($routes){
+	$routes->get("/dashboard","Dashboard::index");
+
+});
+$routes->group("",["filter"=>"AlreadyLogged"],function($routes){
+	$routes->get("/auth","Auth::index");
+	$routes->get("/auth/register","Auth::register");
+
+});
+
+
+
 /**
  * --------------------------------------------------------------------
  * Route Definitions
